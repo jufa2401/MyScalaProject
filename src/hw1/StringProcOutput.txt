@@ -1,0 +1,83 @@
+res0: Boolean = true
+res1: Boolean = false
+res2: Boolean = false
+res3: Boolean = false
+res4: Boolean = true
+isPal: isPal[](val string: String) => Boolean
+
+
+
+
+
+
+
+res5: Boolean = true
+isPal2: isPal2[](val string: String) => Boolean
+
+
+
+
+
+
+res6: String = marssram
+mkPal: mkPal[](val string: String) => String
+
+
+
+
+res7: String = knvhe
+res8: String = rmifnyosbnldemrkxjjy
+mkWord: mkWord[](val size: Int = 5) => String
+
+
+
+
+
+
+
+
+
+res9: String = Ljymjz ukvfu nltti lcmog gotii kjslo hejzu.
+mkSentence: mkSentence[](val size: Int = 40) => String
+
+
+
+
+
+
+
+
+
+
+
+
+res10: String = fghijabcde
+shuffle: shuffle[](val string: String) => String
+
+
+
+
+
+
+
+
+
+res11: Int = 2
+countSubstrings: countSubstrings[](val substring: String,val str: String) => Int
+
+
+res12: Double = 45.14
+res13: Double = -75.99000000000001
+res14: Double = 903.0
+java.lang.NumberFormatException: For input string: "abc"
+res15: AnyVal = ()
+
+
+
+
+eval: eval[](val expression: String) => Double
+
+
+
+
+
