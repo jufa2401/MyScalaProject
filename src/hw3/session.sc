@@ -15,8 +15,6 @@ val double = (v: Double) => v * 2
 
 
 
-
-
 //def compose[A,B,C](f: B => C, g: A => B, x: A): C = f(g(x))
 //compose(inc, double, 2)
 
@@ -30,12 +28,11 @@ def selfIter[T](f: T=> T, n: Int): T => T = {
 }
 // 3. Problem
 def countPass[T](testArray: T => Boolean, p: Array[T]):Int = p.count(testArray)
-countPass((x: Float) => x > 0, Array(5.3f, 10.3f, 16.4f, 25.3f, 33.3f))
+countPass((x: Float) => x.isWhole(), Array(5.0f, 10.0f, 16.4f, 25.3f, 33.3f))
 
 // 4. Problem
 def recur(baseVal: Int, combiner: (Int,Int) => Int): Int => Int = {
   def helper(n:Int): Int = {
-    print(n)
     if(n == 0) baseVal
     else combiner(n,helper(n-1))
   }
@@ -43,18 +40,17 @@ def recur(baseVal: Int, combiner: (Int,Int) => Int): Int => Int = {
 }
 
 //cool shit
-recur(1, (a: Int, b: Int) => a * b)(4) // factorial
+recur(1, (a: Int, b: Int) => a * b)(3) // factorial
 
 lazy val ass = recur(1, (a: Int, b: Int) => a * b)
 ass(4)
 
 
-
 def parseDigits(digits: String): Option[Int] =
   if (digits.matches("[0-9]*")) Some(digits.toInt) else None
 
-def deOptionize[A, R](func: A => Option[R]) =
-  (arg: A) => func(arg) match {
+def deOptionize[A, F](optionFunc: A => Option[F]) =
+  (arg: A) => optionFunc(arg) match {
     case Some(thing) => thing
     case None => throw new Exception("Result was empty")
   }

@@ -1,5 +1,3 @@
-import scalaz._
-import Scalaz._
 def square(x: Int) = x * x
 def noisySquare(x: Int) = { println("squaring " + x); square(x)}
 lazy val hundred = noisySquare(10)
@@ -26,7 +24,7 @@ def iterF[T](f: T => T, init: T, n: Int) = {
   result
 
 }
-iterF(square,2,3)
+iterF(square,2,1)
 iterF(math.sin(_),3.14,4)
 iterF(selfAppend,"Hello",4)
 
@@ -48,4 +46,3 @@ o1.filter(x => x > 50).map(x => x+50)
 
 val o3: Option[Int] = Some(3000)
 
-val toOptionsTogether = o3|+|o2
