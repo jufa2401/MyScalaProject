@@ -46,3 +46,42 @@ o1.filter(x => x > 50).map(x => x+50)
 
 val o3: Option[Int] = Some(3000)
 
+
+
+// Different way of using the type parameter. Bubblesort that works on all subtypes of ordered
+def bubbleSort[A <% Ordered[A]](a:Array[A]) {
+  for (i<-0 until a.length-1) {
+    for(j<-0 until a.length-1-i) {
+      if(a(j+1)<a(j)) { // Since we specified that the type is ordered we can do < operator on the test
+        val temp = a(j)
+        a(j) = a(j+1)
+        a(j+1)=temp
+      }
+    }
+  }
+}
+var v = new Array[Int](5)
+v(0) = 10
+v(1) = 12
+v(2) = 2
+v(3) = 5
+v(4) = 1
+var s = new Array[Float](5)
+s(4) = 10.33f
+s(3) = 12.31f
+s(2) = 44.21f
+s(1) = 66.22f
+s(0) = 1010.2f
+
+var s2 = new Array[String](5)
+s2(4) = "10.33"
+s2(3) = "12.31"
+s2(2) = "44.21"
+s2(1) = "66.22"
+s2(0) = "1010.120"
+bubbleSort(v)
+bubbleSort(s)
+bubbleSort(s2)
+println(v.mkString(", "))
+println(s.mkString(", "))
+println(s2.mkString(", "))
