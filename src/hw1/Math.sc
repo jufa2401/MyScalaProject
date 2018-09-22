@@ -9,7 +9,6 @@ def solve(A: Int, B: Int, C: Int):Option[(Double, Double)] = {
   if (A == 0) None
   else {
     def D = B * B - 4 * A * C
-
     if (D == 0) Some(-B / 2.0 / A, 0.00)
     else if (D > 0){ Some(((-B + sqrt(D)) / 2.0 / A, (-B - sqrt(D)) / 2.0 / A))}
     else None

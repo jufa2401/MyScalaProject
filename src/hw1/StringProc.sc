@@ -64,7 +64,7 @@ def shuffle(string: String): String = {
 }
 // Problem 7
 countSubstrings("is", "Mississippi")
-def countSubstrings(substring:String, str:Strin g) = substring.r.findAllMatchIn(str).length
+def countSubstrings(substring:String, str:String) = substring.r.findAllMatchIn(str).length
 
 
 eval("3.14+42")
