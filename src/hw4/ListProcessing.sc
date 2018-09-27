@@ -288,18 +288,27 @@ isSorted[Int](List(1, 2, 3, 4, 5), (x: Int, y: Int) => x.compareTo(y))
 /****************************************
   * Problem 13: streams
   ***************************************/
+
 // ones
-val ones: Stream[Int] = Stream.continually(1)
+val ones: Stream[Int] = 1 #:: ones
+ones(10)
 //val ones2: Stream[Int] = 1 #:: 1
 
 // nats
-val nats: Stream[Int] = Stream.from(0)
+val nats: Stream[Int] = {
+  def loop(h: Int): Stream[Int] = h #:: loop(h+1)
+  loop(0)
+}
+//val nats: Stream[Int] = Stream.from(0)
 
 // evens
-val evens: Stream[Int] = Stream.from(1).map(x => 2 * x)
+val evens:Stream[Int] = nats.map(x=> 2*x)
+evens(99)
+//val evens: Stream[Int] = Stream.from(1).map(x => 2 * x)
 
 // squares
-val squares: Stream[Int] = Stream.from(1).map(x => x * x)
-
+val squares: Stream[Int] = nats.map(x=> x*x)
+squares(100)
+//val squares2: Stream[Int] = Stream.from(1).map(x => x * x)
 
 

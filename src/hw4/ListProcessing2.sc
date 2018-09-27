@@ -53,7 +53,7 @@ spellCheckMPF(doc,dic)
   * Problem 4: polynomials
   ***************************************/
 // evalMono
-def evalMono(mono: (Double,Double), x:Double) = mono._1*math.pow(x,mono._2)
+def evalMono(mono: (Double,Double), x:Double) = mono._1 * math.pow(x,mono._2)
 
 
 // evalPoly
