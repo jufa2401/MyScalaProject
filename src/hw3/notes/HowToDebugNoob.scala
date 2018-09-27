@@ -16,7 +16,7 @@ object HowToDebugNoob extends App {
     result
   }
 
-println(iterSquare(2,1))
+  println(iterSquare(2,1))
 
   // 6. Problem
   def iterF[T](f: T => T, init: T, n: Int) = {
@@ -27,7 +27,7 @@ println(iterSquare(2,1))
   }
   println(iterF(square,2,1))
   println(iterF(math.sin(_),3.14,4))
-//  iterF(selfAppend,"Hello",4)
+  //  iterF(selfAppend,"Hello",4)
 
 
   // 4. Problem
@@ -41,5 +41,23 @@ println(iterSquare(2,1))
 
   //cool shit
   recur(1, (a: Int, b: Int) => a * b)(3) // factorial
+
+
+
+// Control loop from assignment of DDS
+  def controlLoop[S](state: S, cycle: Int, halt: (S,Int)=> Boolean, update: (S, Int) => S): (S, Int) = {
+    //  Checks if halted, then returns state. By specifying Int as return, i can also see at what cycle it ends
+    if(halt(state,cycle)) (state,cycle)
+    //   Otherwise it updates state, then we update cycle by incrementing with 1. Then we update and go back into the controlloop with new values
+    else controlLoop(update(state,cycle),cycle+1,halt,update)
+  }
+
+  def solve(f: Double => Double) = {
+    controlLoop[Double](1.0,0,
+      (guess: Double, cycle: Int) => Math.abs((guess - f(guess))/guess)/guess < 0.00001,
+      (r: Double, cycle: Int) => f(r)
+    )
+  }
+  solve((some: Double) => some)
 
 }

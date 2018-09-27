@@ -1,0 +1,12 @@
+Scala collections
+Traversable: Look through and visit
+
+Iterable: Look through,visit and change
+
+Sequences: Ordered with non unique elements
+Sets: Unordered with unique elements
+
+Identity and content are the same for immutable collections
+
+
+http://www.cs.sjsu.edu/faculty/pearce/modules/lectures/scala/collections/Collections.htm

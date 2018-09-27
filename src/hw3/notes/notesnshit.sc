@@ -60,25 +60,10 @@ def bubbleSort[A <% Ordered[A]](a:Array[A]) {
     }
   }
 }
-var v = new Array[Int](5)
-v(0) = 10
-v(1) = 12
-v(2) = 2
-v(3) = 5
-v(4) = 1
-var s = new Array[Float](5)
-s(4) = 10.33f
-s(3) = 12.31f
-s(2) = 44.21f
-s(1) = 66.22f
-s(0) = 1010.2f
+var v = Array(10,12,2,5,1)
+var s = Array(10.33f,12.31f,44.21f,66.22f,1010.2f)
+var s2 = Array("10.33","12.31","44.21","66.22","1010.120")
 
-var s2 = new Array[String](5)
-s2(4) = "10.33"
-s2(3) = "12.31"
-s2(2) = "44.21"
-s2(1) = "66.22"
-s2(0) = "1010.120"
 bubbleSort(v)
 bubbleSort(s)
 bubbleSort(s2)
