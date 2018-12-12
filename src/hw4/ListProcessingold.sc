@@ -1,6 +1,6 @@
-import scala.util.control.TailCalls.TailRec
-//Assignment 4, List Processing I
-//Name: Justin Fabricius
+
+// Assignment 4, List Processing I
+// Name: Justin Fabricius
 
 // Helpers
 val cube = (x: Int) => x*x*x
@@ -12,7 +12,7 @@ def isOdd(x: Int) = x % 2 != 0
   ***************************************/
 
 // Iterative solution
-def sumOfOddCubeIte(list : List[Int]): Int = {
+def sumOfOddCubeIte(list : List[Int]): Int ={
   var sum = 0
   for(element <- list){
     if(isOdd(element)) sum += cube(element)
@@ -59,8 +59,6 @@ sumOfOddCubeTailRec(cubeList2)
 sumOfOddMPF(cubeList)
 sumOfOddMPF(cubeList2)
 
-
-
 /****************************************
   * Problem 2: sum of sums
   ***************************************/
@@ -82,38 +80,45 @@ def sumOfSumsIt(listList:List[List[Int]]): Int = {
 //   }
 //  }
 // sum
-
+/**
+  * hmm
+  * @param listList
+  * @return
+  */
 // Recursive solution
-def sumOfSumsRec(list: List[List[Int]]): Int = {
-  def helper(list: List[Int]): Int = {
-    if (list == Nil) 0
-    else list.head + helper(list.tail)
+def sumOfSumsRec(listList: List[List[Int]]): Int = {
+  val newlist = listList.flatten
+  newlist match {
+    case head :: tail => head + sumOfSumsRec(List(newlist.tail)) // if there is an element, add it to the sum of the tail
+    case Nil => 0 // if there are no elements, then the sum is 0
   }
-  if (list == Nil) 0
-  else
-    helper(list.head) + sumOfSumsRec(list.tail)
 }
 
 // tail recursive solution
 
-def sumOfSumsTailRec(list: List[List[Int]]): Int = {
-  def sumTail(list: List[Int]): Int = {
-    def sumHelper(result: Int, unseen: List[Int]): Int = {
-      if (unseen == Nil)
-        result
-      else
-        sumHelper(result + unseen.head, unseen.tail)
-    }
-    sumHelper(0, list)
-  }
-  def sumOfSumHelper(result: Int, unseen: List[List[Int]]): Int = {
-    if (unseen == Nil)
-      result
-    else
-      sumOfSumHelper(result + sumTail(unseen.head), unseen.tail)
-  }
-  sumOfSumHelper(0, list)
-}
+//def sumOfSumTail(list: List[List[Int]]): Int = {
+//  def helper(result: Int, unseen: List[List[Int]]): Int = {
+//    if (unseen == Nil)
+//      result
+//    else
+//      helper(result + sumOfSumTail(unseen.head), unseen.tail)
+//  }
+//  helper(0, list)
+//}
+//
+//sumOfSumTail(myList2)
+
+
+//def sumOfSumsTailRec(listList: List[List[Int]]): Int = {
+//  def helper(listList: List[List[Int]], sum: Int): Int = {
+//    val newlist = listList.flatten
+//    newlist match {
+//      case x :: tail => helper(List(newlist.tail), sum + x)
+//      case Nil => sum
+//    }
+//  }
+//  helper(listList, 0)
+//}
 
 // MPF solution
 def sumOfSumsReduce(list: List[List[Int]]) = list.flatten.reduce(_+_)
@@ -148,7 +153,7 @@ depth(420)
   ***************************************/
 
 // Iterative solution
-def numPassIte[T](list: List[T], testFunction: T => Boolean): Int = {
+def numPassIte[T](list: List[T],testFunction: T => Boolean): Int = {
   var cnt = 0
   for (x <- list)
     if (testFunction(x)) cnt += 1
@@ -195,13 +200,14 @@ numPassMPF(testlist,isEven)
   ***************************************/
 
 // Iterative solution
-def allPasIte[T](list:List[T], testFunction: T => Boolean): Boolean = {
+def allPasIte[T](list:List[T],testFunction: T => Boolean): Boolean = {
   var li = list
   while (li.nonEmpty) {
     if (!testFunction(li.head)) return false
     li = li.tail
   }
   true
+
 }
 // ^same as list.forall(testFunction).forall is an iterative function
 
@@ -211,7 +217,7 @@ def allPassRec[T](list: List[T], testFunction: T => Boolean): Boolean = {
   if(list == Nil) true
   else if(testFunction(list.head)) allPassRec(list.tail,testFunction)
   else {
-    allPassRec(Nil,(d: Boolean) => false) // This is regular recursive, but it is stupid. But doing this function recursively is stupid anyway.
+    allPassRec(Nil,(d: Boolean) =>false) // This is regular recursive, but it is stupid. But doing this function recursively is stupid anyway.
     false
   }
 }
@@ -282,7 +288,6 @@ somePassMPF(List(2,4),isOdd)
 somePassTailRec(List(3,4),isOdd)
 somePassTailRec(List(2,4),isOdd)
 
-somePassIte(List(3,3), (x: Int) => x % 2 == 0)
 /****************************************
   * Problem 10: isSorted
   ***************************************/
@@ -311,348 +316,16 @@ val nats: Stream[Int] = {
   def loop(h: Int): Stream[Int] = h #:: loop(h+1)
   loop(0)
 }
-nats(100)
 //val nats: Stream[Int] = Stream.from(0)
 
 // evens
-val evens:Stream[Int] = nats.map(x => 2*x)
+val evens:Stream[Int] = nats.map(x=> 2*x)
 evens(99)
 //val evens: Stream[Int] = Stream.from(1).map(x => 2 * x)
 
 // squares
-val squares: Stream[Int] = nats.map(x => x*x)
+val squares: Stream[Int] = nats.map(x=> x*x)
 squares(100)
 //val squares2: Stream[Int] = Stream.from(1).map(x => x * x)
 
 
-//-----------------------------------------------------------------///
-
-/** Output for listprocessing
-  *
-
-
-
-
-cube: Int => Int = hw4.A$A31$A$A31$$Lambda$1964/700121954@1b665d9
-isEven: isEven[](val x: Int) => Boolean
-isOdd: isOdd[](val x: Int) => Boolean
-
-
-
-
-
-
-sumOfOddCubeIte: sumOfOddCubeIte[](val list: List[Int]) => Int
-
-
-
-
-
-
-
-
-sumOfOddCubeRec: sumOfOddCubeRec[](val list: List[Int]) => Int
-
-
-
-
-
-
-
-
-sumOfOddCubeTailRec: sumOfOddCubeTailRec[](val list: List[Int]) => Int
-
-
-
-
-
-
-
-
-
-
-sumOfOddMPF: sumOfOddMPF[](val list: List[Int]) => Int
-
-
-
-
-
-
-cubeList: List[Int] = List(2, 5, 3, 5)
-cubeList2: List[Int] = List(2, 4, 6)
-res0: Int = 277
-res1: Int = 0
-res2: Int = 277
-res3: Int = 0
-res4: Int = 277
-res5: Int = 0
-res6: Int = 277
-res7: Int = 0
-
-
-
-
-
-sumOfSumsIt: sumOfSumsIt[](val listList: List[List[Int]]) => Int
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-sumOfSumsRec: sumOfSumsRec[](val list: List[List[Int]]) => Int
-
-
-
-
-
-
-
-
-
-
-
-sumOfSumsTailRec: sumOfSumsTailRec[](val list: List[List[Int]]) => Int
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-sumOfSumsReduce: sumOfSumsReduce[](val list: List[List[Int]]) => Int
-
-
-list: List[List[Int]] = List(List(1, 2, 3), List(4, 5, 6))
-res8: Int = 21
-res9: Int = 21
-res10: Int = 21
-res11: Int = 21
-
-
-
-
-
-depth: depth[](val v: Any) => Int
-
-
-
-
-
-
-
-
-res12: Int = 2
-res13: Int = 0
-
-res14: Int = 0
-
-
-
-
-
-
-numPassIte: numPassIte[T](val list: List[T],val testFunction: T => Boolean) => Int
-
-
-
-
-
-
-
-numPassRec: numPassRec[T](val xs: List[T],val predicate: T => Boolean) => Int
-
-
-
-
-
-
-
-
-numPassTailRec: numPassTailRec[T](val list: List[T],val testFunction: T => Boolean) => Int
-
-
-
-
-
-
-
-
-
-
-
-
-numPassMPF: numPassMPF[T](val list: List[T],val testFunction: T => Boolean) => Int
-
-
-
-testlist: List[Int] = List(2, 2, 3, 1, 5, 3, 2)
-res15: Int = 3
-res16: Int = 3
-res17: Int = 3
-res18: Int = 3
-res19: Int = 3
-
-
-
-
-
-
-
-allPasIte: allPasIte[T](val list: List[T],val testFunction: T => Boolean) => Boolean
-
-
-
-
-
-
-
-
-
-
-
-
-allPassRec: allPassRec[T](val list: List[T],val testFunction: T => Boolean) => Boolean
-
-
-
-
-
-
-
-
-
-allPassTailRec: allPassTailRec[T](val list: List[T],val testFunction: T => Boolean) => Boolean
-
-
-
-
-
-allPassMPF: allPassMPF[T](val list: List[T],val testFunction: T => Boolean) => Boolean
-
-
-
-res20: Boolean = false
-res21: Boolean = true
-res22: Boolean = false
-res23: Boolean = false
-res24: Boolean = true
-res25: Boolean = false
-res26: Boolean = false
-res27: Boolean = true
-res28: Boolean = false
-res29: Boolean = false
-res30: Boolean = true
-res31: Boolean = false
-
-
-
-
-
-
-somePassIte: somePassIte[T](val list: List[T],val testFunction: T => Boolean) => Boolean
-
-
-
-
-
-
-
-
-
-somePassRec: somePassRec[T](val list: List[T],val testFunction: T => Boolean) => Boolean
-
-
-
-
-
-
-
-
-
-somePassTailRec: somePassTailRec[T](val list: List[T],val testFunction: T => Boolean) => Boolean
-
-
-
-
-
-
-somePassMPF: somePassMPF[T](val list: List[T],val testFunction: T => Boolean) => Boolean
-
-
-res32: Boolean = true
-res33: Boolean = false
-res34: Boolean = true
-res35: Boolean = false
-res36: Boolean = true
-res37: Boolean = false
-
-
-
-
-
-
-isSorted: isSorted[](val nums: List[Int]) => Boolean
-
-
-
-
-
-res38: Boolean = false
-res39: Boolean = true
-
-
-
-
-
-
-ones: Stream[Int] = Stream(1, ?)
-res40: Int = 1
-
-
-
-nats: Stream[Int] = Stream(0, ?)
-
-
-
-res41: Int = 100
-
-
-
-evens: Stream[Int] = Stream(0, ?)
-res42: Int = 198
-
-
-
-squares: Stream[Int] = Stream(0, ?)
-res43: Int = 10000
-
-  */

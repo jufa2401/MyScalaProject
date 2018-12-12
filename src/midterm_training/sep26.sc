@@ -10,10 +10,8 @@ val numSquare = lift((n: Int) => n * n)
 numSquare(new Number(2))
 
 
-def map2[T, S, U](list1: List[S], list2: List[T], combiner: (S, T)=>U): List[U] = {
 
-}
 
-map2(List(2, 3, 4), List(6, 7, 8), (x: Int, y: Int) => x + y)
+//map2(List(2, 3, 4), List(6, 7, 8), (x: Int, y: Int) => x + y)
 
 //val numSquare = lift((n: Int) => n * n)

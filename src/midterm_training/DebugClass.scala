@@ -1,14 +1,25 @@
 package midterm_training
 
 object DebugClass extends App {
-  def map2[T, S, U](list1: List[S], list2: List[T], combiner: (S, T)=>U): List[U] = {
-    if(list1.size != list2.size) throw new Exception("Lists must be of equal size")
-    if(list1 == Nil) Nil
+  // problem 1
+  def zip[S, T](list1: List[S], list2: List[T]): List[(S, T)] = {
+    if (list1.size != list2.size) throw new Exception("Lists must have same sizes")
+    if (list1 == Nil) Nil
     else {
-      println(combiner(list1.head,list2.head))
-      combiner(list1.head,list2.head)::map2(list1.tail,list2.tail,combiner)
+      val pairs = zip(list1.tail, list2.tail)
+      (list1.head, list2.head):: pairs
     }
   }
+  def unzip[S, T](pairs: List[(S, T)]): (List[S], List[T]) = {
+    if (pairs == Nil) (Nil, Nil)
+    else {
+      val pairsTail =unzip(pairs.tail)
+      (pairs.head._1::pairsTail._1, pairs.head._2::pairsTail._2)
+    }
+  }                                               //> unzip: [S, T](pairs: List[(S, T)])(List[S], List[T])
 
-  map2(List(2, 3, 4), List(6, 7, 8), (x: Int, y: Int) => x + y)
+  unzip(zip(List(1, 2, 3), List("one", "two", "three")))
+
+  print(zip(List(1,2,4,5),List(3,4,5,6)))
+
 }

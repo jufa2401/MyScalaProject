@@ -15,7 +15,6 @@ val plus5_2 = add2(5)_
 plus5_2(6)
 
 // You can also unlimit arguments for last paramter
-def adds(x:Int*):Int =
 
 
 

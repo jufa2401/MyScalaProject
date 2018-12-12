@@ -15,7 +15,7 @@ def controlLoop[S](state: S, cycle: Int, halt: (S,Int)=> Boolean, update: (S, In
 // 2. Problem
 controlLoop[Int](1,0,
   (population: Int, cycle: Int) => population >= 100000,
-  (pop: Int, cycle: Int) => pop*2)
+  (pop: Int, cycle: Int) => pop * 2)
 
 // 3. Problem from In class example
 def solve(f: Double=> Double) = {
